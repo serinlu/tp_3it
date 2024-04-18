@@ -8,22 +8,43 @@ using UnityEngine.UI;
 public class NewBehaviourScript : MonoBehaviour
 {
     public Text pregunta;
+    public Text[] respuestas;
+    public Text cronometroText;
+    public Text puntaje;
+
+    public Button[] botonesRespuestas;
+
     int numero1;
     int numero2;
     string preguntaFinal;
     int division;
-    public Text[] respuestas;
-    int contador;
+    int respuestaAleatoria;
+    int a;
+
+    public int tiempoCronometro;
+    private float contador;
+    public int maximoPuntaje;
 
     // Start is called before the first frame update
-     void Start()
+    void Start()
     {
+        puntaje.text = a.ToString();
+        contador = tiempoCronometro;
+        cronometroText.text = contador.ToString();
+        Iniciador();
+    }
+
+    void Iniciador()
+    {
+        
         bool numerosValidos = false;
 
         while (!numerosValidos)
         {
-            numero1 = Random.Range(4, 50);
+            
+            numero1 = Random.Range(4, 100);
             numero2 = Random.Range(2, 50);
+            respuestaAleatoria = Random.Range(0, respuestas.Length);
             division = numero1 / numero2;
 
             if (numero2 > numero1 || numero1 % numero2 != 0 || numero1 == numero2)
@@ -37,39 +58,85 @@ public class NewBehaviourScript : MonoBehaviour
                 numerosValidos = true;
             }
 
-            division = numero1 / numero2;
-
-            List<int> opcionesRespuesta = new List<int>();
-
-            opcionesRespuesta.Add(division);
-
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i <= respuestas.Length - 1; i++)
             {
-                int opcionAleatoria = division + Random.Range(-10, 11);
-
-                while (opcionesRespuesta.Contains(opcionAleatoria) || opcionAleatoria == division || opcionAleatoria < 0) 
+                if (i == respuestaAleatoria)
                 {
-                    opcionAleatoria = division + Random.Range(-10, 11);
+                    respuestas[i].text = division.ToString();
                 }
-
-                opcionesRespuesta.Add(opcionAleatoria);
-            }
-
-            opcionesRespuesta = opcionesRespuesta.OrderBy(x => Random.value).ToList();
-
-            for (int i = 0; i < respuestas.Length; i++)
-            {
-                if (i == 0) respuestas[i].text = opcionesRespuesta[i].ToString();
-                else respuestas[i].text = opcionesRespuesta[i].ToString();
+                else if (i != respuestaAleatoria)
+                {
+                    Debug.Log("no hace nada");
+                    respuestas[i].text = Random.Range(4, 81).ToString();
+                }
             }
         }
 
-        contador = 0;
+        
+    }
+
+    public void daleClick1()
+    {
+        if (respuestas[0].text == division.ToString())
+        {
+            a++; 
+            puntaje.text = a.ToString();
+        }
+        contador = tiempoCronometro;
+        Iniciador();
+    }
+
+    public void daleClick2()
+    {
+        if (respuestas[1].text == division.ToString())
+        {
+            a++;
+            puntaje.text = a.ToString();
+        }
+        contador = tiempoCronometro;
+        Iniciador();
+    }
+
+    public void daleClick3()
+    {
+        if (respuestas[2].text == division.ToString())
+        {
+            a++;
+            puntaje.text = a.ToString();
+        }
+        contador = tiempoCronometro;
+        Iniciador();
+    }
+
+    public void daleClick4()
+    {
+        if (respuestas[3].text == division.ToString())
+        {
+            a++;
+            puntaje.text = a.ToString();
+        }
+        contador = tiempoCronometro;
+        Iniciador();
     }
 
     // Update is called once per frame
     void Update()
     {
+        contador = contador - Time.deltaTime;
 
+        if(puntaje.text == maximoPuntaje.ToString())
+        {
+            foreach (Button boton in botonesRespuestas)
+            {
+                boton.interactable = false;
+            }
+        }
+
+        cronometroText.text = contador.ToString("0");
+        if (contador <= 0)
+        {
+            contador = tiempoCronometro;
+            cronometroText.text = contador.ToString();
+        }
     }
 }
