@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class NewBehaviourScript : MonoBehaviour
@@ -13,6 +14,7 @@ public class NewBehaviourScript : MonoBehaviour
     public Text puntaje;
 
     public Button[] botonesRespuestas;
+    public GameObject pantallaFinal;
 
     int numero1;
     int numero2;
@@ -20,14 +22,24 @@ public class NewBehaviourScript : MonoBehaviour
     int division;
     int respuestaAleatoria;
     int a;
+    bool b;
 
     public int tiempoCronometro;
     private float contador;
     public int maximoPuntaje;
+    public bool pasarEscena;
+    public int indiceEscena;
 
     // Start is called before the first frame update
     void Start()
     {
+        b = true;
+        int a = 0;
+        foreach (Button boton in botonesRespuestas)
+        {
+            boton.interactable = true;
+        }
+        pantallaFinal.SetActive(false);
         puntaje.text = a.ToString();
         contador = tiempoCronometro;
         cronometroText.text = contador.ToString();
@@ -58,59 +70,57 @@ public class NewBehaviourScript : MonoBehaviour
                 numerosValidos = true;
             }
 
-            for (int i = 0; i <= respuestas.Length - 1; i++)
+            List<string> posiblesRespuestas = new List<string>();
+            posiblesRespuestas.Add(division.ToString());
+
+            for (int i = 1; i < respuestas.Length; i++)
             {
-                if (i == respuestaAleatoria)
-                {
-                    respuestas[i].text = division.ToString();
-                }
-                else if (i != respuestaAleatoria)
-                {
-                    Debug.Log("no hace nada");
-                    respuestas[i].text = Random.Range(4, 81).ToString();
-                }
+                int respuestaAleatoria = Random.Range(4, 50);
+                posiblesRespuestas.Add(respuestaAleatoria.ToString());
+            }
+
+            posiblesRespuestas = posiblesRespuestas.OrderBy(x => Random.value).ToList();
+
+            for (int i = 0; i < respuestas.Length; i++)
+            {
+                respuestas[i].text = posiblesRespuestas[i];
             }
         }
 
         
     }
 
+    public void RepetirEjercicio()
+    {
+        a = 0; // Reinicia el puntaje
+        puntaje.text = a.ToString(); // Muestra el puntaje en 0
+        pantallaFinal.SetActive(false); // Oculta el canvas de victoria
+        Start();
+    }
+
     public void daleClick1()
     {
-        if (respuestas[0].text == division.ToString())
-        {
-            a++; 
-            puntaje.text = a.ToString();
-        }
-        contador = tiempoCronometro;
-        Iniciador();
+        click(0);
     }
 
     public void daleClick2()
     {
-        if (respuestas[1].text == division.ToString())
-        {
-            a++;
-            puntaje.text = a.ToString();
-        }
-        contador = tiempoCronometro;
-        Iniciador();
+        click(1);
     }
 
     public void daleClick3()
     {
-        if (respuestas[2].text == division.ToString())
-        {
-            a++;
-            puntaje.text = a.ToString();
-        }
-        contador = tiempoCronometro;
-        Iniciador();
+        click(2);
     }
 
     public void daleClick4()
     {
-        if (respuestas[3].text == division.ToString())
+        click(3);
+    }
+
+    void click(int numRespuesta)
+    {
+        if (respuestas[numRespuesta].text == division.ToString())
         {
             a++;
             puntaje.text = a.ToString();
@@ -122,21 +132,38 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        contador = contador - Time.deltaTime;
-
-        if(puntaje.text == maximoPuntaje.ToString())
+        if (puntaje.text == maximoPuntaje.ToString() && b == true)
         {
+            pantallaFinal.SetActive(true);
             foreach (Button boton in botonesRespuestas)
             {
                 boton.interactable = false;
             }
+
+            b = false;
         }
 
-        cronometroText.text = contador.ToString("0");
-        if (contador <= 0)
+        if (b)
         {
-            contador = tiempoCronometro;
-            cronometroText.text = contador.ToString();
+            contador = contador - Time.deltaTime;
+            cronometroText.text = contador.ToString("0");
+
+            if (contador <= 0)
+            {
+                Iniciador();
+                contador = tiempoCronometro;
+                cronometroText.text = contador.ToString();
+            }
         }
+
+        if (pasarEscena)
+        {
+            cambiarEscena(indiceEscena);
+        }
+    }
+
+    public void cambiarEscena(int indice)
+    {
+        SceneManager.LoadScene(indice);
     }
 }

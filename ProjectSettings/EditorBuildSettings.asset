@@ -6,6 +6,31 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/FreeButtonSet/Scenes/menuPrincipal.unity
+    guid: 3709bfee07b83a641b3b66833df3fb3e
+  - enabled: 1
+    path: Assets/FreeButtonSet/Scenes/matematicas/menuMatematicas.unity
+    guid: dfe39323fc358bd4aa15e308685adcb1
+  - enabled: 1
+    path: Assets/FreeButtonSet/Scenes/matematicas/adicion.unity
+    guid: 6926c65d104ed38419ae0b330ad1c31e
+  - enabled: 1
+    path: Assets/FreeButtonSet/Scenes/matematicas/sustraccion.unity
+    guid: 6e185a9212b8f6d4d8044f562638c89a
+  - enabled: 1
+    path: Assets/FreeButtonSet/Scenes/matematicas/multiplicacion.unity
+    guid: 4296df93d9f0cf24bb3cf4165a4a3c50
+  - enabled: 1
+    path: Assets/FreeButtonSet/Scenes/matematicas/division.unity
+    guid: 6d6ffd585253053469f49c7d737db7fd
+  - enabled: 1
+    path: Assets/FreeButtonSet/Scenes/conocimientos/menuConocimientos.unity
+    guid: 06c684ca72b42634dbf68091fb0d97f1
+  - enabled: 1
+    path: Assets/FreeButtonSet/Scenes/conocimientos/menuHumanidades.unity
+    guid: b1e6fcc9d5100ab4888f8b62af0813ba
+  - enabled: 1
+    path: Assets/FreeButtonSet/Scenes/conocimientos/menuRL.unity
+    guid: 2eca9ad9a9c40924a93a9bc015b3260d
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
