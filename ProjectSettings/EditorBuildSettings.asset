@@ -32,5 +32,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/FreeButtonSet/Scenes/conocimientos/menuRL.unity
     guid: 2eca9ad9a9c40924a93a9bc015b3260d
+  - enabled: 1
+    path: Assets/FreeButtonSet/Scenes/conocimientos/EducacionCivica.unity
+    guid: 3986e2d447f2aa646b079c97f60f9402
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
