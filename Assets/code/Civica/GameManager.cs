@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
 public class GameManager : MonoBehaviour
@@ -14,13 +15,26 @@ public class GameManager : MonoBehaviour
     private QuizDB m_quizDB = null;
     private QuizUI m_quizUI = null;
     private AudioSource m_audioSource = null;
+    public Text puntajeCorrect;
+    public Text puntajeIncorrect;
+    public GameObject[]pantallas;
+    public Button[] botones; 
+    public int maxpuntajeCorrect;
+    public int maxpuntajeIncorrect;
+    int correct = 0;
+    int incorrect = 0;
 
     private void Start()
     {
         m_quizDB = GameObject.FindObjectOfType<QuizDB>();
         m_quizUI = GameObject.FindObjectOfType<QuizUI>();
         m_audioSource = GetComponent<AudioSource>();
-
+        pantallas[0].SetActive(false);
+        pantallas[1].SetActive(false);
+        foreach (Button boton in botones)
+        {
+            boton.interactable = true;
+        }
         NextQuestion();
     }
 
@@ -41,23 +55,83 @@ public class GameManager : MonoBehaviour
             m_audioSource.Stop();
         }
 
+        //m_audioSource.clip = optionButton.Option.correcto ? m_correctSound : m_incorrectSound;
+        //optionButton.SetColor(optionButton.Option.correcto ? m_correctColor : m_incorrectColor);
+
+        //m_audioSource.Play();
+        //if(optionButton.Option.correcto)
+        //{
+        //    correct = correct + 1;
+        //    puntajeCorrect.text=correct.ToString();
+        //}
+        //else
+        //{
+        //    incorrect=incorrect+ 1;
+        //    puntajeIncorrect.text=incorrect.ToString();
+        //}
+
+        //yield return new WaitForSeconds(m_waitTime);
+        //if (optionButton.Option.correcto)
+        //    NextQuestion();
+        //else
+        //    GameOver();
+
         m_audioSource.clip = optionButton.Option.correcto ? m_correctSound : m_incorrectSound;
         optionButton.SetColor(optionButton.Option.correcto ? m_correctColor : m_incorrectColor);
-
+       
         m_audioSource.Play();
 
         yield return new WaitForSeconds(m_waitTime);
+
         if (optionButton.Option.correcto)
-            NextQuestion();
+        {
+            correct = correct + 1;
+            puntajeCorrect.text=correct.ToString();
+        }
         else
-            GameOver();
+        {
+            incorrect = incorrect + 1;
+            puntajeIncorrect.text=incorrect.ToString();
+        }
+        NextQuestion();
+
+        if (correct == maxpuntajeCorrect)
+        {
+            pantallas[1].SetActive(true);
+            foreach (Button boton in botones)
+            {
+                boton.interactable = false;
+            }
+           
+
+        }
+        else if (incorrect == maxpuntajeIncorrect)
+        {
+            pantallas[0].SetActive(true);
+            foreach (Button boton in botones)
+            {
+                boton.interactable = false;
+            }
+
+        }
+
 
     }
-    
-    private void GameOver()
+    public void RepetirEjercicio()
     {
-        SceneManager.LoadScene(9);
-    }
+        correct = 0;
+        incorrect = 0;
+        puntajeCorrect.text = correct.ToString();
+        puntajeIncorrect.text = incorrect.ToString();
+        pantallas[0].SetActive(false); // Oculta el canvas de victoria
+        pantallas[1].SetActive(false); // Oculta el canvas de victoria
 
-    
+        Start();
+    }
+    //private void GameOver()
+    //{
+    //    SceneManager.LoadScene(9);
+    //}
+
+
 }
