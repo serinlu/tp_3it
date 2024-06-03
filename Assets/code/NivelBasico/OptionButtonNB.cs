@@ -1,19 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
 [RequireComponent(typeof(Image))]
-public class OptionButton : MonoBehaviour
+
+public class OptionButtonNB : MonoBehaviour
 {
     private Text m_text = null;
     private Button m_button = null;
     private Image m_image = null;
     private Color m_originaColor = Color.black;
 
-    public Option Option { get; set; }
+    public OptionNB Option { get; set; }
 
     private void Awake()
     {
@@ -23,7 +24,7 @@ public class OptionButton : MonoBehaviour
 
         m_originaColor = m_image.color;
     }
-    public void Construct(Option options, Action<OptionButton> callback)
+    public void Construct(OptionNB options, Action<OptionButtonNB> callback)
     {
         m_text.text = options.text;
 

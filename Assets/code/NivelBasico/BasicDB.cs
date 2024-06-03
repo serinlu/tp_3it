@@ -1,20 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
-
-
-public class QuizDB : MonoBehaviour
+public class BasicDB : MonoBehaviour
 {
-    [SerializeField] private List<Question> m_questionlist = null;
+    [SerializeField] private List<QuestionNB> m_questionlist = null;
+    public int CantidadPreguntas { get; private set; }
+    private List<QuestionNB> m_backup = null;
 
-    private List<Question> m_backup = null;
+    void Start()
+    {
+        CantidadPreguntas = m_questionlist.Count;
+
+    }
     private void Awake()
     {
         m_backup = m_questionlist.ToList();
+
     }
-    public Question GetRandom(bool remove = true)
+
+    public QuestionNB GetRandom(bool remove = true)
     {
         if (m_questionlist.Count == 0)
             RestoreBackup();
@@ -24,13 +30,19 @@ public class QuizDB : MonoBehaviour
         if (!remove)
             return m_questionlist[index];
 
-        Question q = m_questionlist[index];
+
+        QuestionNB q = m_questionlist[index];        
         m_questionlist.RemoveAt(index);
 
         return q;
     }
+ 
     private void RestoreBackup()
     {
         m_questionlist = m_backup.ToList();
+    }
+    public int CantPreguntas()
+    {
+        return m_questionlist.Count;
     }
 }

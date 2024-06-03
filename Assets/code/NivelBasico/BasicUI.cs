@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QuizUI : MonoBehaviour
+public class BasicUI : MonoBehaviour
 {
     [SerializeField] private Text m_question = null;
-    [SerializeField] private List<OptionButton> m_buttonList = null;
+    [SerializeField] private List<OptionButtonNB> m_buttonList = null;
 
-    public void Construct(Question q, Action<OptionButton> callback)
+    public void Construct(QuestionNB q, Action<OptionButtonNB> callback)
     {
         m_question.text = q.text;
         for (int n = 0; n < m_buttonList.Count; n++)
@@ -17,5 +17,4 @@ public class QuizUI : MonoBehaviour
             m_buttonList[n].Construct(q.options[n], callback);
         }
     }
-
 }
