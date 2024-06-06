@@ -1,0 +1,169 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class NewBehaviourScript4 : MonoBehaviour
+{
+    public Text pregunta;
+    public Text[] respuestas;
+    public Text cronometroText;
+    public Text puntaje;
+
+    public Button[] botonesRespuestas;
+    public GameObject pantallaFinal;
+
+    int numero1;
+    int numero2;
+    string preguntaFinal;
+    int sustraccion;
+    int respuestaAleatoria;
+    int a;
+    bool b;
+
+    public int tiempoCronometro;
+    private float contador;
+    public int maximoPuntaje;
+    public bool pasarEscena;
+    public int indiceEscena;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        b = true;
+        int a = 0;
+        foreach (Button boton in botonesRespuestas)
+        {
+            boton.interactable = true;
+        }
+        pantallaFinal.SetActive(false);
+        puntaje.text = a.ToString();
+        contador = tiempoCronometro;
+        cronometroText.text = contador.ToString();
+        Iniciador();
+    }
+
+    void Iniciador()
+    {
+        
+        bool numerosValidos = false;
+
+        while (!numerosValidos)
+        {
+            
+            numero1 = Random.Range(10, 100);
+            numero2 = Random.Range(2, 99);
+            respuestaAleatoria = Random.Range(0, respuestas.Length);
+            sustraccion = numero1 - numero2;
+
+            if (numero2 > numero1 || numero1 == numero2)
+            {
+                continue;
+            }
+            else
+            {
+                preguntaFinal = numero1 + " - " + numero2;
+                pregunta.text = preguntaFinal;
+                numerosValidos = true;
+            }
+
+            List<string> posiblesRespuestas = new List<string>();
+            posiblesRespuestas.Add(sustraccion.ToString());
+
+            for (int i = 1; i < respuestas.Length; i++)
+            {
+                int respuestaAleatoria = Random.Range(4, 50);
+                posiblesRespuestas.Add(respuestaAleatoria.ToString());
+            }
+
+            posiblesRespuestas = posiblesRespuestas.OrderBy(x => Random.value).ToList();
+
+            for (int i = 0; i < respuestas.Length; i++)
+            {
+                respuestas[i].text = posiblesRespuestas[i];
+            }
+        }
+
+        
+    }
+
+    public void RepetirEjercicio()
+    {
+        a = 0; // Reinicia el puntaje
+        puntaje.text = a.ToString(); // Muestra el puntaje en 0
+        pantallaFinal.SetActive(false); // Oculta el canvas de victoria
+        Start();
+    }
+
+    public void daleClick1()
+    {
+        click(0);
+    }
+
+    public void daleClick2()
+    {
+        click(1);
+    }
+
+    public void daleClick3()
+    {
+        click(2);
+    }
+
+    public void daleClick4()
+    {
+        click(3);
+    }
+
+    void click(int numRespuesta)
+    {
+        if (respuestas[numRespuesta].text == sustraccion.ToString())
+        {
+            a++;
+            puntaje.text = a.ToString();
+        }
+        contador = tiempoCronometro;
+        Iniciador();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (puntaje.text == maximoPuntaje.ToString() && b == true)
+        {
+            pantallaFinal.SetActive(true);
+            foreach (Button boton in botonesRespuestas)
+            {
+                boton.interactable = false;
+            }
+
+            b = false;
+        }
+
+        if (b)
+        {
+            contador = contador - Time.deltaTime;
+            cronometroText.text = contador.ToString("0");
+
+            if (contador <= 0)
+            {
+                Iniciador();
+                contador = tiempoCronometro;
+                cronometroText.text = contador.ToString();
+            }
+        }
+
+        if (pasarEscena)
+        {
+            cambiarEscena(indiceEscena);
+        }
+    }
+
+    public void cambiarEscena(int indice)
+    {
+        SceneManager.LoadScene(indice);
+    }
+}
