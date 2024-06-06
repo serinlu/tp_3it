@@ -44,13 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d729556de740ae34ab60bbd73774a67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: "\xBFEl numero romano LX corresponde a?"
+  text: "\xBFC\xF3mo se forma el plural de la palabra 'flor'?  "
   options:
-  - text: 60
+  - text: flores
     correct: 1
-  - text: 150
+  - text: floros
     correct: 0
-  - text: 30
+  - text: "flor\xE9s"
     correct: 0
-  - text: 50
+  - text: flors
     correct: 0

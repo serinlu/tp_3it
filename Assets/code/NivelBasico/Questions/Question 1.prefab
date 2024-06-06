@@ -44,13 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d729556de740ae34ab60bbd73774a67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: "\xBFCuales son los colores primarios?"
+  text: 'Cual es el resultado de la siguiente operacion combinada: (12+10)x3/2'
   options:
-  - text: Azul, celeste, verde
+  - text: 22
     correct: 0
-  - text: Amarillo, verde, blanco
+  - text: 34
     correct: 0
-  - text: Amarillo, rojo, azul
+  - text: 32
     correct: 0
-  - text: Rojo, azul, verde
+  - text: 33
     correct: 1

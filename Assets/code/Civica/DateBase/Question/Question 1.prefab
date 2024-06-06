@@ -47,10 +47,10 @@ MonoBehaviour:
   text: Representa al estado peruano
   options:
   - text: El congreso
-    correcto: 0
+    correct: 0
   - text: El presidente de la republica
-    correcto: 1
+    correct: 1
   - text: El alcalde
-    correcto: 0
+    correct: 0
   - text: Los ministros
-    correcto: 0
+    correct: 0
