@@ -50,5 +50,20 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/FreeButtonSet/Scenes/conocimientos/OpCom.unity
     guid: bee557ad3fbecf04b9acee54c96398da
+  - enabled: 1
+    path: Assets/Scenes/menuPruebas.unity
+    guid: cb64fb6d83c11764bae7814cdf66e306
+  - enabled: 1
+    path: Assets/Scenes/basico.unity
+    guid: a3a3373239bc3a5499d7a13a124ef6b0
+  - enabled: 1
+    path: Assets/Scenes/quizTimerMedium.unity
+    guid: d2b88c961d734064094118cc0954dec8
+  - enabled: 1
+    path: Assets/Scenes/avanzado.unity
+    guid: a43faa0c61ee59e4fb4f1026c7a78c20
+  - enabled: 1
+    path: Assets/Scenes/final.unity
+    guid: 12be7195f57fc8b4ebb1f0dd4b5dc513
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

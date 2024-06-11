@@ -308,7 +308,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 179071083}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 607760431}
+        m_TargetAssemblyTypeName: gestorEscenasMenuPrincipal, Assembly-CSharp
+        m_MethodName: cambiarEscena
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 19
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &179071083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,7 +441,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 205626309}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 607760431}
+        m_TargetAssemblyTypeName: gestorEscenasMenuPrincipal, Assembly-CSharp
+        m_MethodName: cambiarEscena
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 17
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &205626309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -631,7 +655,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 277241216}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 607760431}
+        m_TargetAssemblyTypeName: gestorEscenasMenuPrincipal, Assembly-CSharp
+        m_MethodName: cambiarEscena
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 16
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &277241216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -749,6 +785,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 525201940}
   m_CullTransparentMesh: 1
+--- !u!1 &607760430
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 607760432}
+  - component: {fileID: 607760431}
+  m_Layer: 0
+  m_Name: gestorEscenas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &607760431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607760430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 804435a207e55aa41904f6d4c232864c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pasarEscena: 0
+  indiceEscena: 0
+--- !u!4 &607760432
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607760430}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 274.8542, y: 167.48846, z: -1.9707668}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &615452090
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,14 +1250,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 607760431}
         m_TargetAssemblyTypeName: gestorEscenasMenuPrincipal, Assembly-CSharp
         m_MethodName: cambiarEscena
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1460,7 +1542,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2081909345}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 607760431}
+        m_TargetAssemblyTypeName: gestorEscenasMenuPrincipal, Assembly-CSharp
+        m_MethodName: cambiarEscena
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 18
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2081909345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1506,3 +1600,4 @@ SceneRoots:
   - {fileID: 1182600587}
   - {fileID: 142299744}
   - {fileID: 615452093}
+  - {fileID: 607760432}

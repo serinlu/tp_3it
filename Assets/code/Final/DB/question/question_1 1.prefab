@@ -44,13 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c56d2258281b244591e115eb0c2c3a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: '?'
+  Text: "Si tienes 3 caramelos y te regalan 4 m\xE1s, \xBFcu\xE1ntos caramelos tienes?"
   Options:
-  - Text: davcadc
+  - Text: 5
     IsCorrect: 0
-  - Text: sacec
+  - Text: 6
     IsCorrect: 0
-  - Text: acaecec
+  - Text: 7
     IsCorrect: 1
-  - Text: ecaewcsaec
+  - Text: 8
     IsCorrect: 0

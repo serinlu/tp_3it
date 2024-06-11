@@ -44,13 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c56d2258281b244591e115eb0c2c3a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: '?'
+  Text: "Si tienes 8 juguetes y regalas 3, \xBFcu\xE1ntos juguetes te quedan?"
   Options:
-  - Text: davcadc
+  - Text: 4
     IsCorrect: 0
-  - Text: sacec
-    IsCorrect: 0
-  - Text: acaecec
+  - Text: 5
     IsCorrect: 1
-  - Text: ecaewcsaec
+  - Text: 6
+    IsCorrect: 0
+  - Text: 7
     IsCorrect: 0

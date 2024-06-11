@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6443317366432505406}
   - component: {fileID: 2023084885693795330}
   m_Layer: 0
-  m_Name: question_1
+  m_Name: question_1 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,14 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c56d2258281b244591e115eb0c2c3a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: "Si tienes 7 manzanas y te dan 2 m\xE1s, \xBFcu\xE1ntas manzanas tienes en
-    total?"
+  Text: "Si tienes 12 l\xE1pices y pierdes 5, \xBFcu\xE1ntos l\xE1pices te quedan?"
   Options:
+  - Text: 6
+    IsCorrect: 0
+  - Text: 7
+    IsCorrect: 1
   - Text: 8
     IsCorrect: 0
   - Text: 9
-    IsCorrect: 1
-  - Text: 10
-    IsCorrect: 0
-  - Text: 11
     IsCorrect: 0
