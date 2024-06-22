@@ -268,7 +268,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Selecciona una actividad
+  m_Text: Selecciona una actividad :)
 --- !u!222 &626170038
 CanvasRenderer:
   m_ObjectHideFlags: 0
