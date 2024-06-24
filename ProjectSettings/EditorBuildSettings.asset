@@ -67,6 +67,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/final.unity
     guid: 12be7195f57fc8b4ebb1f0dd4b5dc513
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
