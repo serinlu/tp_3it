@@ -31,6 +31,7 @@ public class GameManager5 : MonoBehaviour
         m_audioSource = GetComponent<AudioSource>();
         pantallas[0].SetActive(false);
         pantallas[1].SetActive(false);
+        pantallas[2].SetActive(true);
         foreach (Button boton in botones)
         {
             boton.interactable = true;
@@ -97,25 +98,14 @@ public class GameManager5 : MonoBehaviour
 
         if (correct == maxpuntajeCorrect)
         {
+            pantallas[2].SetActive(false);
             pantallas[1].SetActive(true);
-            foreach (Button boton in botones)
-            {
-                boton.interactable = false;
-            }
-           
-
         }
         else if (incorrect == maxpuntajeIncorrect)
         {
+            pantallas[2].SetActive(false);
             pantallas[0].SetActive(true);
-            foreach (Button boton in botones)
-            {
-                boton.interactable = false;
-            }
-
         }
-
-
     }
     public void RepetirEjercicio()
     {
@@ -125,6 +115,7 @@ public class GameManager5 : MonoBehaviour
         puntajeIncorrect.text = incorrect.ToString();
         pantallas[0].SetActive(false); // Oculta el canvas de victoria
         pantallas[1].SetActive(false); // Oculta el canvas de victoria
+        pantallas[2].SetActive(true);
 
         Start();
     }

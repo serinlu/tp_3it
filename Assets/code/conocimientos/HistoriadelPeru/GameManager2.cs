@@ -73,22 +73,13 @@ public class GameManager2 : MonoBehaviour //control del juego
 
         if (correct == maxpuntajeCorrect)
         {
+            pantallas[2].SetActive(false);
             pantallas[1].SetActive(true);
-            foreach (Button boton in botones)
-            {
-                boton.interactable = false;
-            }
-
-
         }
         else if (incorrect == maxpuntajeIncorrect)
         {
+            pantallas[2].SetActive(false);
             pantallas[0].SetActive(true);
-            foreach (Button boton in botones)
-            {
-                boton.interactable = false;
-            }
-
         }
 
         if (pasarEscena)
@@ -104,6 +95,7 @@ public class GameManager2 : MonoBehaviour //control del juego
         puntajeIncorrect.text = incorrect.ToString();
         pantallas[0].SetActive(false); // Oculta el canvas de victoria
         pantallas[1].SetActive(false); // Oculta el canvas de victoria
+        pantallas[2].SetActive(true);
 
         Start();
     }

@@ -4,19 +4,24 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
+[RequireComponent(typeof(AudioSource))]
 
 public class escribe : MonoBehaviour
 {
+    private AudioSource m_audioSource;
+    public AudioClip m_correctSound;
+    public AudioClip m_incorrectSound;
+
     public Text letraCanvas;
     public Text pregunta;
     public Text respuesta;
-    public Text puntajetxt;
-    public Text vidastxt;
+    public Text correctastxt;
+    public Text incorrectastxt;
     public InputField input;
     public GameObject[] pantallafinal;
     public GameObject GUI;
-    public int maxPuntaje; //puntaje maximo para ganar
-    public int maxVidas; //vidas disponibles antes de perder
+    public int maxCorrectas; //respuestas correctas para ganar
+    public int maxIncorrectas; //respuestas incorrectas antes de perder
     string letras;
     public bool pasarEscena;
     public int indiceEscena;
@@ -31,18 +36,20 @@ public class escribe : MonoBehaviour
 
     bool a1,b1,c1,d1,e1,f1,g1;
 
-    int aleatorioLetraString, puntos, vidasrestantes;
+    int aleatorioLetraString, correctasC, incorrectasC;
     // Start is called before the first frame update
     public void Start()
     {
+        m_audioSource = GetComponent<AudioSource>();
+
         GUI.SetActive(true);
         pantallafinal[0].SetActive(false); //pantalla de victoria
         pantallafinal[1].SetActive(false); //pantalla de derrota
-        puntos = 0;
-        vidasrestantes = maxVidas;
+        correctasC = 0;
+        incorrectasC = 0;
 
-        vidastxt.text = vidasrestantes.ToString();
-        puntajetxt.text = puntos.ToString() + "/" + maxPuntaje.ToString();
+        incorrectastxt.text = incorrectasC.ToString();
+        correctastxt.text = correctasC.ToString();
         inicioEjercicio();
     }
 
@@ -95,47 +102,61 @@ public class escribe : MonoBehaviour
     }
     void respuestaParametros(string[] pregunt, string respuesta1, string respuesta2, string respuesta3, string respuesta4)
     {
+        bool correct = false;
         if (pregunta.text == pregunt[0] && respuesta.text.ToLower().Trim() == respuesta1)
         {
-            puntos++;
-            puntajetxt.text = puntos.ToString() + "/" + maxPuntaje.ToString();
+            correctasC++;
+            correctastxt.text = correctasC.ToString();
             Debug.Log("has acertado");
+            correct = true;
         }
         else if (pregunta.text == pregunt[1] && respuesta.text.ToLower().Trim() == respuesta2)
         {
-            puntos++;
-            puntajetxt.text = puntos.ToString() + "/" + maxPuntaje.ToString();
+            correctasC++;
+            correctastxt.text = correctasC.ToString();
             Debug.Log("has acertado");
+            correct = true;
         }
         else if (pregunta.text == pregunt[2] && respuesta.text.ToLower().Trim() == respuesta3)
         {
-            puntos++;
-            puntajetxt.text = puntos.ToString() + "/" + maxPuntaje.ToString();
+            correctasC++;
+            correctastxt.text = correctasC.ToString();
             Debug.Log("has acertado");
+            correct = true;
         }
         else if (pregunta.text == pregunt[3] && respuesta.text.ToLower().Trim() == respuesta4)
         {
-            puntos++;
-            puntajetxt.text = puntos.ToString() + "/" + maxPuntaje.ToString();
+            correctasC++;
+            correctastxt.text = correctasC.ToString();
             Debug.Log("has acertado");
+            correct = true;
         }
         else
         {
-            vidasrestantes--;
-            vidastxt.text = vidasrestantes.ToString();
+            incorrectasC++;
+            incorrectastxt.text = incorrectasC.ToString();
             Debug.Log("has fallado");
         }
 
-        //Para determinar si gana o pierde:
-        if (puntos == maxPuntaje)
+        //Determina que sonido elegir según si ha sido un acierto o no
+        if (m_audioSource.isPlaying)
         {
-            GUI.SetActive(false);
-            pantallafinal[0].SetActive(true);
+            m_audioSource.Stop();
         }
-        else if (vidasrestantes == 0)
+
+        m_audioSource.clip = correct ? m_correctSound : m_incorrectSound;
+        m_audioSource.Play();
+
+        //Para determinar si gana o pierde:
+        if (correctasC == maxCorrectas)
         {
             GUI.SetActive(false);
             pantallafinal[1].SetActive(true);
+        }
+        else if (incorrectasC == maxIncorrectas)
+        {
+            GUI.SetActive(false);
+            pantallafinal[0].SetActive(true);
         }
     }
     public void valoresBooleanosFalsos()
@@ -186,10 +207,10 @@ public class escribe : MonoBehaviour
     }
     public void Reset()
     {
-        puntos = 0;
-        vidasrestantes = maxVidas;
-        puntajetxt.text = puntos.ToString() + "/" + maxPuntaje.ToString();
-        vidastxt.text = vidasrestantes.ToString();
+        correctasC = 0;
+        incorrectasC = maxIncorrectas;
+        correctastxt.text = correctasC.ToString();
+        incorrectastxt.text = incorrectasC.ToString();
         valoresBooleanosFalsos();
         Start();
     }

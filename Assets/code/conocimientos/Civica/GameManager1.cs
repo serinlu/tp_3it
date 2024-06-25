@@ -33,6 +33,7 @@ public class GameManager1 : MonoBehaviour
         m_audioSource = GetComponent<AudioSource>();
         pantallas[0].SetActive(false);
         pantallas[1].SetActive(false);
+        pantallas[2].SetActive(true);
         foreach (Button boton in botones)
         {
             boton.interactable = true;
@@ -99,22 +100,13 @@ public class GameManager1 : MonoBehaviour
 
         if (correct == maxpuntajeCorrect)
         {
-            pantallas[1].SetActive(true);
-            foreach (Button boton in botones)
-            {
-                boton.interactable = false;
-            }
-           
-
+            pantallas[2].SetActive(false);
+            pantallas[1].SetActive(true); 
         }
         else if (incorrect == maxpuntajeIncorrect)
         {
+            pantallas[2].SetActive(false);
             pantallas[0].SetActive(true);
-            foreach (Button boton in botones)
-            {
-                boton.interactable = false;
-            }
-
         }
 
         if (pasarEscena)
@@ -129,8 +121,9 @@ public class GameManager1 : MonoBehaviour
         incorrect = 0;
         puntajeCorrect.text = correct.ToString();
         puntajeIncorrect.text = incorrect.ToString();
-        pantallas[0].SetActive(false); // Oculta el canvas de victoria
+        pantallas[0].SetActive(false); // Oculta el canvas de derrota
         pantallas[1].SetActive(false); // Oculta el canvas de victoria
+        pantallas[2].SetActive(true); // Muestra pantalla de juego
 
         Start();
     }

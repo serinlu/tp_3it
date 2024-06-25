@@ -13,10 +13,10 @@ public class GameManager3 : MonoBehaviour
     [SerializeField] private Color m_correctColor = Color.black;
     [SerializeField] private Color m_incorrectColor = Color.black;
     [SerializeField] private float m_waitTime = 0.0f;
-    [SerializeField] private int m_requiredCorrectAnswers = 0; // Número de aciertos requeridos para ganar
-    [SerializeField] private int m_livesLeft = 0; // Número de fallos requeridos para perder
-    [SerializeField] private Text puntaje;
-    [SerializeField] private Text vidas;
+    [SerializeField] private int correctasMax = 0; // Número de aciertos requeridos para ganar
+    [SerializeField] private int incorrectasMax = 0; // Número de fallos requeridos para perder
+    [SerializeField] private Text correctastxt;
+    [SerializeField] private Text incorrectastxt;
     [SerializeField] private GameObject[] pantallasfinales;
     
 
@@ -37,8 +37,8 @@ public class GameManager3 : MonoBehaviour
         pantallasfinales[1].SetActive(false); //pantalla de derrota
         pantallasfinales[2].SetActive(true); //pantalla de juego
 
-        puntaje.text = m_correctAnswers.ToString() + "/" + m_requiredCorrectAnswers;
-        m_incorrectAnswers = m_livesLeft; //cuantas vidas le ponen al jugador
+        correctastxt.text = m_correctAnswers.ToString();
+        incorrectastxt.text = m_incorrectAnswers.ToString();
 
         NextQuestion();
     }
@@ -68,8 +68,8 @@ public class GameManager3 : MonoBehaviour
         if (opcionBoton.Opcion.correct)
         {
             m_correctAnswers++;
-            puntaje.text = m_correctAnswers.ToString() + "/" + m_requiredCorrectAnswers;
-            if (m_correctAnswers == m_requiredCorrectAnswers)
+            correctastxt.text = m_correctAnswers.ToString();
+            if (m_correctAnswers == correctasMax)
             {
                 GameWin();
             }
@@ -78,9 +78,9 @@ public class GameManager3 : MonoBehaviour
         }
         else
         {
-            m_incorrectAnswers--;
-            vidas.text = m_incorrectAnswers.ToString();
-            if (m_incorrectAnswers == 0)
+            m_incorrectAnswers++;
+            incorrectastxt.text = m_incorrectAnswers.ToString();
+            if (m_incorrectAnswers == incorrectasMax)
             {
                 GameOver();
             }
@@ -108,10 +108,10 @@ public class GameManager3 : MonoBehaviour
     public void RestartGame()
     {
         m_correctAnswers = 0;
-        m_incorrectAnswers = m_livesLeft;
+        m_incorrectAnswers = 0;
 
-        puntaje.text = m_correctAnswers.ToString() + "/" + m_requiredCorrectAnswers;
-        vidas.text = m_incorrectAnswers.ToString();
+        correctastxt.text = m_correctAnswers.ToString();
+        incorrectastxt.text = m_incorrectAnswers.ToString();
 
         // Volver a activar la pantalla de juego y desactivar las otras pantallas
         pantallasfinales[0].SetActive(false);
