@@ -36,6 +36,7 @@ public class GameManagerTimer : MonoBehaviour
         m_audioSource = GetComponent<AudioSource>();
         pantallasfinales[0].SetActive(true);
         pantallasfinales[1].SetActive(false);
+        pantallasfinales[2].SetActive(false);
 
         QuestionNumber.text = (m_counterQuestion + 1).ToString();
         m_correctAnswers = 0;
@@ -185,5 +186,16 @@ public class GameManagerTimer : MonoBehaviour
         Results.text = m_commentary;
 
         NextQuestion();
+    }
+    public void PauseGame()
+    {
+        pantallasfinales[0].SetActive(false);
+        pantallasfinales[2].SetActive(true);
+    }
+
+    public void ResumeGame()
+    {
+        pantallasfinales[2].SetActive(false);
+        pantallasfinales[0].SetActive(true);
     }
 }

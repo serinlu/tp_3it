@@ -17,7 +17,10 @@ public class GameManager1 : MonoBehaviour
     private AudioSource m_audioSource = null;
     public Text puntajeCorrect;
     public Text puntajeIncorrect;
-    public GameObject[] pantallas;
+    public GameObject finalCanvas;
+    public GameObject[] pantallaFinal;
+    public GameObject canvasPrincipal;
+    public GameObject canvasPausa;
     public Button[] botones; 
     public int maxpuntajeCorrect;
     public int maxpuntajeIncorrect;
@@ -31,9 +34,10 @@ public class GameManager1 : MonoBehaviour
         m_quizDB = GameObject.FindFirstObjectByType<QuizDB1>();
         m_quizUI = GameObject.FindFirstObjectByType<QuizUI1>();
         m_audioSource = GetComponent<AudioSource>();
-        pantallas[0].SetActive(false);
-        pantallas[1].SetActive(false);
-        pantallas[2].SetActive(true);
+        finalCanvas.SetActive(false);
+        pantallaFinal[0].SetActive(false);
+        canvasPausa.SetActive(false);
+        canvasPrincipal.SetActive(true);
         foreach (Button boton in botones)
         {
             boton.interactable = true;
@@ -88,25 +92,28 @@ public class GameManager1 : MonoBehaviour
 
         if (optionButton.Option.correcto)
         {
-            correct = correct + 1;
+            correct++;
             puntajeCorrect.text=correct.ToString();
         }
         else
         {
-            incorrect = incorrect + 1;
+            incorrect++;
             puntajeIncorrect.text=incorrect.ToString();
         }
         NextQuestion();
 
         if (correct == maxpuntajeCorrect)
         {
-            pantallas[2].SetActive(false);
-            pantallas[1].SetActive(true); 
+            finalCanvas.SetActive(true);
+            canvasPrincipal.SetActive(false);
+            pantallaFinal[0].SetActive(true); 
         }
         else if (incorrect == maxpuntajeIncorrect)
         {
-            pantallas[2].SetActive(false);
-            pantallas[0].SetActive(true);
+            finalCanvas.SetActive(true);
+            pantallaFinal[1].SetActive(true);
+            canvasPrincipal.SetActive(false);
+            
         }
 
         if (pasarEscena)
@@ -121,9 +128,8 @@ public class GameManager1 : MonoBehaviour
         incorrect = 0;
         puntajeCorrect.text = correct.ToString();
         puntajeIncorrect.text = incorrect.ToString();
-        pantallas[0].SetActive(false); // Oculta el canvas de derrota
-        pantallas[1].SetActive(false); // Oculta el canvas de victoria
-        pantallas[2].SetActive(true); // Muestra pantalla de juego
+        finalCanvas.SetActive(false);
+        canvasPrincipal.SetActive(true);
 
         Start();
     }
@@ -136,5 +142,17 @@ public class GameManager1 : MonoBehaviour
     {
         SceneManager.LoadScene(indice);
     }
-    
+    public void PauseGame()
+    {
+        canvasPrincipal.SetActive(false);
+        canvasPausa.SetActive(true);
+    }
+
+    public void ResumeGame()
+    {
+        canvasPausa.SetActive(false);
+        canvasPrincipal.SetActive(true);
+        
+    }
+
 }

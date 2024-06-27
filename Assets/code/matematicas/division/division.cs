@@ -14,7 +14,9 @@ public class NewBehaviourScript : MonoBehaviour
     public Text puntaje;
 
     public Button[] botonesRespuestas;
+    public GameObject canvasPrincipal;
     public GameObject pantallaFinal;
+    public GameObject canvasPausa;
 
     int numero1;
     int numero2;
@@ -165,5 +167,16 @@ public class NewBehaviourScript : MonoBehaviour
     public void cambiarEscena(int indice)
     {
         SceneManager.LoadScene(indice);
+    }
+    public void PauseGame()
+    {
+        canvasPrincipal.SetActive(false);
+        canvasPausa.SetActive(true);
+    }
+
+    public void ResumeGame()
+    {
+        canvasPausa.SetActive(false);
+        canvasPrincipal.SetActive(true);
     }
 }

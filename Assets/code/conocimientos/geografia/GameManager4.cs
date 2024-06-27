@@ -10,15 +10,18 @@ public class GameManager4 : MonoBehaviour
     [SerializeField] private AudioClip m_correctSound = null;
     [SerializeField] private AudioClip m_incorrectSound = null;
     [SerializeField] private Color m_correctColor = Color.black;
-    [SerializeField] private Color m_incorrectColor= Color.black;
+    [SerializeField] private Color m_incorrectColor = Color.black;
     [SerializeField] private float m_waitTime = 0.0f;
     private QuizDB4 m_quizDB = null;
     private QuizUI4 m_quizUI = null;
     private AudioSource m_audioSource = null;
     public Text puntajeCorrect;
     public Text puntajeIncorrect;
-    public GameObject[]pantallas;
-    public Button[] botones; 
+    public GameObject finalCanvas;
+    public GameObject[] pantallaFinal;
+    public GameObject canvasPrincipal;
+    public GameObject canvasPausa;
+    public Button[] botones;
     public int maxpuntajeCorrect;
     public int maxpuntajeIncorrect;
     int correct = 0;
@@ -31,9 +34,10 @@ public class GameManager4 : MonoBehaviour
         m_quizDB = GameObject.FindFirstObjectByType<QuizDB4>();
         m_quizUI = GameObject.FindFirstObjectByType<QuizUI4>();
         m_audioSource = GetComponent<AudioSource>();
-        pantallas[0].SetActive(false);
-        pantallas[1].SetActive(false);
-        pantallas[2].SetActive(true);
+        finalCanvas.SetActive(false);
+        pantallaFinal[0].SetActive(false);
+        canvasPausa.SetActive(false);
+        canvasPrincipal.SetActive(true);
         foreach (Button boton in botones)
         {
             boton.interactable = true;
@@ -43,7 +47,7 @@ public class GameManager4 : MonoBehaviour
 
     private void NextQuestion()
     {
-        m_quizUI.Construct(m_quizDB.GetRandom(),GiveAnswer);
+        m_quizUI.Construct(m_quizDB.GetRandom(), GiveAnswer);
     }
 
     private void GiveAnswer(OptionButton4 optionButton)
@@ -81,34 +85,37 @@ public class GameManager4 : MonoBehaviour
 
         m_audioSource.clip = optionButton.Option.correcto ? m_correctSound : m_incorrectSound;
         optionButton.SetColor(optionButton.Option.correcto ? m_correctColor : m_incorrectColor);
-       
+
         m_audioSource.Play();
 
         yield return new WaitForSeconds(m_waitTime);
 
         if (optionButton.Option.correcto)
         {
-            correct = correct + 1;
-            puntajeCorrect.text=correct.ToString();
+            correct++;
+            puntajeCorrect.text = correct.ToString();
         }
         else
         {
-            incorrect = incorrect + 1;
-            puntajeIncorrect.text=incorrect.ToString();
+            incorrect++;
+            puntajeIncorrect.text = incorrect.ToString();
         }
         NextQuestion();
 
         if (correct == maxpuntajeCorrect)
         {
-            pantallas[2].SetActive(false);
-            pantallas[1].SetActive(true);
+            finalCanvas.SetActive(true);
+            canvasPrincipal.SetActive(false);
+            pantallaFinal[0].SetActive(true);
         }
         else if (incorrect == maxpuntajeIncorrect)
         {
-            pantallas[2].SetActive(false);
-            pantallas[0].SetActive(true);
+            finalCanvas.SetActive(true);
+            pantallaFinal[1].SetActive(true);
+            canvasPrincipal.SetActive(false);
 
         }
+
         if (pasarEscena)
         {
             cambiarEscena(indiceEscena);
@@ -121,9 +128,8 @@ public class GameManager4 : MonoBehaviour
         incorrect = 0;
         puntajeCorrect.text = correct.ToString();
         puntajeIncorrect.text = incorrect.ToString();
-        pantallas[0].SetActive(false); // Oculta el canvas de derrota
-        pantallas[1].SetActive(false); // Oculta el canvas de victoria
-        pantallas[2].SetActive(true);
+        finalCanvas.SetActive(false);
+        canvasPrincipal.SetActive(true);
 
         Start();
     }
@@ -131,9 +137,22 @@ public class GameManager4 : MonoBehaviour
     //{
     //    SceneManager.LoadScene(9);
     //}
+
     public void cambiarEscena(int indice)
     {
         SceneManager.LoadScene(indice);
+    }
+    public void PauseGame()
+    {
+        canvasPrincipal.SetActive(false);
+        canvasPausa.SetActive(true);
+    }
+
+    public void ResumeGame()
+    {
+        canvasPausa.SetActive(false);
+        canvasPrincipal.SetActive(true);
+
     }
 
 }

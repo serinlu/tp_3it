@@ -21,6 +21,7 @@ public class GameManager_3 : MonoBehaviour
     public Text puntajeIncorrect;
     public GameObject pantallaFinal;
     public GameObject canvasPrincipal;
+    public GameObject canvasPausa;
     public Text mensajeFinal;
 
     public Text resultadoCorrecto;
@@ -53,6 +54,7 @@ public class GameManager_3 : MonoBehaviour
         m_quizUI = GameObject.FindFirstObjectByType<QuizUI_3>();
         m_audioSource = GetComponent<AudioSource>();
         pantallaFinal.SetActive(false);
+        canvasPausa.SetActive(false);
         TimerIsRunning = true;
         foreach (Button boton in botones)
         {
@@ -186,5 +188,26 @@ public class GameManager_3 : MonoBehaviour
     public void cambiarEscena(int indice)
     {
         SceneManager.LoadScene(indice);
+    }
+    public void PauseGame()
+    {
+        if (TimerIsRunning)
+        {
+            Time.timeScale = 0;
+            TimerIsRunning = false;
+            canvasPrincipal.SetActive(false);
+            canvasPausa.SetActive(true);
+        }
+    }
+
+    public void ResumeGame()
+    {
+        if (!TimerIsRunning)
+        {
+            Time.timeScale = 1;
+            TimerIsRunning = true;
+            canvasPausa.SetActive(false);
+            canvasPrincipal.SetActive(true);
+        }
     }
 }

@@ -123,6 +123,16 @@ public class GameManager5 : MonoBehaviour
     //{
     //    SceneManager.LoadScene(9);
     //}
+    public void PauseGame()
+    {
+        pantallas[0].SetActive(false);
+        pantallas[2].SetActive(true);
+    }
 
+    public void ResumeGame()
+    {
+        pantallas[2].SetActive(false);
+        pantallas[0].SetActive(true);
+    }
 
 }

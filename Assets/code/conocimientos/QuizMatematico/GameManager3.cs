@@ -125,4 +125,15 @@ public class GameManager3 : MonoBehaviour
     {
         SceneManager.LoadScene(indice);
     }
+    public void PauseGame()
+    {
+        pantallasfinales[0].SetActive(false);
+        pantallasfinales[2].SetActive(true);
+    }
+
+    public void ResumeGame()
+    {
+        pantallasfinales[2].SetActive(false);
+        pantallasfinales[0].SetActive(true);
+    }
 }

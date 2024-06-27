@@ -18,6 +18,8 @@ public class escribe : MonoBehaviour
     public Text correctastxt;
     public Text incorrectastxt;
     public InputField input;
+    public GameObject finalCanvas;
+    public GameObject canvasPausa;
     public GameObject[] pantallafinal;
     public GameObject GUI;
     public int maxCorrectas; //respuestas correctas para ganar
@@ -45,6 +47,7 @@ public class escribe : MonoBehaviour
         GUI.SetActive(true);
         pantallafinal[0].SetActive(false); //pantalla de victoria
         pantallafinal[1].SetActive(false); //pantalla de derrota
+        canvasPausa.SetActive(false);
         correctasC = 0;
         incorrectasC = 0;
 
@@ -150,13 +153,15 @@ public class escribe : MonoBehaviour
         //Para determinar si gana o pierde:
         if (correctasC == maxCorrectas)
         {
+            finalCanvas.SetActive(true);
             GUI.SetActive(false);
-            pantallafinal[1].SetActive(true);
+            pantallafinal[0].SetActive(true);
         }
         else if (incorrectasC == maxIncorrectas)
         {
+            finalCanvas.SetActive(true);
             GUI.SetActive(false);
-            pantallafinal[0].SetActive(true);
+            pantallafinal[1].SetActive(true);
         }
     }
     public void valoresBooleanosFalsos()
@@ -213,5 +218,16 @@ public class escribe : MonoBehaviour
         incorrectastxt.text = incorrectasC.ToString();
         valoresBooleanosFalsos();
         Start();
+    }
+    public void PauseGame()
+    {
+        GUI.SetActive(false);
+        canvasPausa.SetActive(true);
+    }
+
+    public void ResumeGame()
+    {
+        canvasPausa.SetActive(false);
+        GUI.SetActive(true);
     }
 }
