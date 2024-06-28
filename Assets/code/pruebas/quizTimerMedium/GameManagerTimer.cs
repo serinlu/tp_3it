@@ -36,7 +36,6 @@ public class GameManagerTimer : MonoBehaviour
         m_audioSource = GetComponent<AudioSource>();
         pantallasfinales[0].SetActive(true);
         pantallasfinales[1].SetActive(false);
-        pantallasfinales[2].SetActive(false);
 
         QuestionNumber.text = (m_counterQuestion + 1).ToString();
         m_correctAnswers = 0;
