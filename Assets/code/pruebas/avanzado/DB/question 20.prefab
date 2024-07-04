@@ -44,13 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591d7555b71a8fc4a9ace263a9faff59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: asdawefde
+  Text: "Entre qu\xE9 a\xF1os se sucit\xF3 la 1ra guerra mundial?"
   Options:
-  - Text: dfesvc
+  - Text: 1923 - 1929
     IsCorrect: 0
-  - Text: efsacvv
+  - Text: 1939 - 1945
     IsCorrect: 0
-  - Text: sevsev
+  - Text: 1914 - 1918
     IsCorrect: 1
-  - Text: vesvsvf
+  - Text: 1960 - 1969
     IsCorrect: 0

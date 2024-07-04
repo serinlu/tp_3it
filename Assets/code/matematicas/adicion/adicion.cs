@@ -17,6 +17,7 @@ public class NewBehaviourScript3 : MonoBehaviour
     public GameObject canvasPrincipal;
     public GameObject pantallaFinal;
     public GameObject canvasPausa;
+    private bool isPaused = false;
 
     int numero1;
     int numero2;
@@ -35,13 +36,14 @@ public class NewBehaviourScript3 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pantallaFinal.SetActive(false);
+        canvasPausa.SetActive(false);
         b = true;
         int a = 0;
         foreach (Button boton in botonesRespuestas)
         {
             boton.interactable = true;
         }
-        pantallaFinal.SetActive(false);
         puntaje.text = a.ToString();
         contador = tiempoCronometro;
         cronometroText.text = contador.ToString();
@@ -117,27 +119,30 @@ public class NewBehaviourScript3 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (puntaje.text == maximoPuntaje.ToString() && b == true)
+        if (!isPaused)
         {
-            pantallaFinal.SetActive(true);
-            foreach (Button boton in botonesRespuestas)
+            if (puntaje.text == maximoPuntaje.ToString() && b == true)
             {
-                boton.interactable = false;
+                pantallaFinal.SetActive(true);
+                foreach (Button boton in botonesRespuestas)
+                {
+                    boton.interactable = false;
+                }
+
+                b = false;
             }
 
-            b = false;
-        }
-
-        if (b)
-        {
-            contador = contador - Time.deltaTime;
-            cronometroText.text = contador.ToString("0");
-
-            if (contador <= 0)
+            if (b)
             {
-                Iniciador();
-                contador = tiempoCronometro;
-                cronometroText.text = contador.ToString();
+                contador = contador - Time.deltaTime;
+                cronometroText.text = contador.ToString("0");
+
+                if (contador <= 0)
+                {
+                    Iniciador();
+                    contador = tiempoCronometro;
+                    cronometroText.text = contador.ToString();
+                }
             }
         }
 
@@ -154,13 +159,21 @@ public class NewBehaviourScript3 : MonoBehaviour
     }
     public void PauseGame()
     {
-        canvasPrincipal.SetActive(false);
+        isPaused = true;
         canvasPausa.SetActive(true);
+        foreach (Button boton in botonesRespuestas)
+        {
+            boton.interactable = false;
+        }
     }
 
     public void ResumeGame()
     {
+        isPaused = false;
         canvasPausa.SetActive(false);
-        canvasPrincipal.SetActive(true);
+        foreach (Button boton in botonesRespuestas)
+        {
+            boton.interactable = true;
+        }
     }
 }

@@ -31,13 +31,13 @@ public class GameManager1 : MonoBehaviour
 
     private void Start()
     {
-        m_quizDB = GameObject.FindFirstObjectByType<QuizDB1>();
-        m_quizUI = GameObject.FindFirstObjectByType<QuizUI1>();
-        m_audioSource = GetComponent<AudioSource>();
         finalCanvas.SetActive(false);
         pantallaFinal[0].SetActive(false);
         canvasPausa.SetActive(false);
         canvasPrincipal.SetActive(true);
+        m_quizDB = GameObject.FindFirstObjectByType<QuizDB1>();
+        m_quizUI = GameObject.FindFirstObjectByType<QuizUI1>();
+        m_audioSource = GetComponent<AudioSource>();
         foreach (Button boton in botones)
         {
             boton.interactable = true;

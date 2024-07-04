@@ -44,13 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591d7555b71a8fc4a9ace263a9faff59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: asdawefde
+  Text: "El Congreso de la Rep\xFAblica, actualmente, tiene..."
   Options:
-  - Text: dfesvc
-    IsCorrect: 0
-  - Text: efsacvv
-    IsCorrect: 0
-  - Text: sevsev
+  - Text: 130 congresistas
     IsCorrect: 1
-  - Text: vesvsvf
+  - Text: 100 congresistas
+    IsCorrect: 0
+  - Text: 150 congresistas
+    IsCorrect: 0
+  - Text: 90 congresistas
     IsCorrect: 0

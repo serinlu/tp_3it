@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
@@ -11,39 +12,51 @@ public class GameManagerTimer : MonoBehaviour
     [SerializeField] private Color m_correctColor = Color.black;
     [SerializeField] private Color m_incorrectColor = Color.black;
     [SerializeField] private float m_waitTime = 0.0f;
-    [SerializeField] private int m_totalQuestions;
-    [SerializeField] private Text QuestionNumber;
     [SerializeField] private Text Results;
     [SerializeField] private Text Score;
+    [SerializeField] private Text Incorrectas;
+    [SerializeField] private Text Restantes;
+    [SerializeField] private Text TimeText;
     [SerializeField] private GameObject[] pantallasfinales;
 
     private QuizDBTimer m_quizDB = null;
     private QuizUITimer m_quizUI = null;
     private AudioSource m_audioSource = null;
+    private int m_totalQuestions = 20;
     private double m_score = 0;
-    private int m_counterQuestion = 0;
+    private int restantesInt = 20;
     private int m_correctAnswers = 0;
     private int m_incorrectAnswers = 0;
     private string m_commentary = "";
-    private float startTime;
+    private bool TimerIsRunning = true;
+    public float TiempoTranscurrido = 0;
     private Question currentQuestion;
 
     private void Start()
     {
-        startTime = Time.time;
+        pantallasfinales[0].SetActive(false);
+        pantallasfinales[1].SetActive(false);
+        pantallasfinales[2].SetActive(false);
+        pantallasfinales[3].SetActive(true);
+        TimerIsRunning = false;
+    }
+    public void Inicio()
+    {
+        pantallasfinales[0].SetActive(true);
+        pantallasfinales[1].SetActive(false);
+        pantallasfinales[2].SetActive(false);
+        pantallasfinales[3].SetActive(false);
+        TimerIsRunning = true;
         m_quizDB = GameObject.FindFirstObjectByType<QuizDBTimer>();
         m_quizUI = GameObject.FindFirstObjectByType<QuizUITimer>();
         m_audioSource = GetComponent<AudioSource>();
-        pantallasfinales[0].SetActive(true);
-        pantallasfinales[1].SetActive(false);
 
-        QuestionNumber.text = (m_counterQuestion + 1).ToString();
         m_correctAnswers = 0;
         m_incorrectAnswers = 0;
         m_commentary = "";
 
-        Score.text = 0 + "/" + m_totalQuestions;
-
+        Score.text = m_correctAnswers.ToString();
+        Restantes.text = restantesInt.ToString();
         NextQuestion();
     }
 
@@ -80,16 +93,17 @@ public class GameManagerTimer : MonoBehaviour
         if (optionButton.Option.correct)
         {
             m_correctAnswers++;
+            restantesInt--;
         }
         else
         {
             m_incorrectAnswers++;
+            restantesInt--;
         }
 
-        m_counterQuestion++;
-        UpdateUI();
+        Update();
 
-        if (m_counterQuestion == m_totalQuestions)
+        if (restantesInt == 0)
         {
             GameResults();
         }
@@ -109,6 +123,7 @@ public class GameManagerTimer : MonoBehaviour
         if (currentQuestion.correctAnswer.Trim().ToLower() == answer.Trim().ToLower())
         {
             m_correctAnswers++;
+            restantesInt--;
             if (m_audioSource.isPlaying)
                 m_audioSource.Stop();
             m_audioSource.clip = m_correctSound;
@@ -117,6 +132,7 @@ public class GameManagerTimer : MonoBehaviour
         else
         {
             m_incorrectAnswers++;
+            restantesInt--;
             if (m_audioSource.isPlaying)
                 m_audioSource.Stop();
             m_audioSource.clip = m_incorrectSound;
@@ -127,10 +143,9 @@ public class GameManagerTimer : MonoBehaviour
 
         m_quizUI.ClearInput();
         m_quizUI.FocusInput();
-        m_counterQuestion++;
-        UpdateUI();
+        Update();
 
-        if (m_counterQuestion == m_totalQuestions)
+        if (restantesInt == 0)
         {
             GameResults();
         }
@@ -140,10 +155,25 @@ public class GameManagerTimer : MonoBehaviour
         }
     }
 
-    private void UpdateUI()
+    private void Update()
     {
-        Score.text = m_correctAnswers.ToString() + "/" + m_totalQuestions;
-        QuestionNumber.text = (m_counterQuestion + 1).ToString();
+        if (TimerIsRunning)
+        {
+            if (TiempoTranscurrido < 300)
+            {
+                TiempoTranscurrido += Time.deltaTime;
+                DisplayTime(TiempoTranscurrido);
+            }
+            else
+            {
+                TiempoTranscurrido = 300;
+                TimerIsRunning = false;
+                GameResults();
+            }
+        }
+        Score.text = m_correctAnswers.ToString();
+        Restantes.text = restantesInt.ToString();
+        Incorrectas.text = m_incorrectAnswers.ToString();
     }
 
     private void GameResults()
@@ -152,15 +182,25 @@ public class GameManagerTimer : MonoBehaviour
         pantallasfinales[0].SetActive(false);
         pantallasfinales[1].SetActive(true);
     }
+    void DisplayTime(float timeToDisplay)
+    {
+        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
+        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+        TimeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
 
     private void CreateResults()
     {
-        float endTime = Time.time;
-        float totalTime = endTime - startTime;
-        m_commentary = "Tiempo: " + totalTime.ToString("F2") + "s";
+        int porcentajeCorrecto = (m_correctAnswers * 100) / m_totalQuestions;
+        int porcentajeIncorrecto = (m_incorrectAnswers * 100) / m_totalQuestions;
+        int minutes = Mathf.FloorToInt(TiempoTranscurrido / 60);
+        int seconds = Mathf.FloorToInt(TiempoTranscurrido % 60);
+        m_commentary = "Tiempo: " + string.Format("{0:00}:{1:00}", minutes, seconds);
 
         m_score = (m_correctAnswers / (double)m_totalQuestions) * 100;
-        m_commentary += "\nPuntaje: " + m_score.ToString("F2") + "%";
+        m_commentary += "\nCorrectas: " + m_correctAnswers.ToString() + " (" + porcentajeCorrecto.ToString() + "%)" + 
+            "\nIncorrectas: " + m_incorrectAnswers.ToString() + " (" + porcentajeIncorrecto.ToString() + "%)" +
+            "\nNo respondidas: " + restantesInt.ToString();
 
         if (m_score == 100) m_commentary += "\nNota: ¡Excelente!";
         else if (m_score >= 90) m_commentary += "\nNota: ¡Bien hecho!";
@@ -174,10 +214,9 @@ public class GameManagerTimer : MonoBehaviour
     {
         m_correctAnswers = 0;
         m_incorrectAnswers = 0;
-        m_counterQuestion = 0;
         m_commentary = "";
 
-        Score.text = 0 + "/" + m_totalQuestions;
+        Score.text = m_correctAnswers.ToString();
 
         pantallasfinales[0].SetActive(true);
         pantallasfinales[1].SetActive(false);
@@ -188,13 +227,25 @@ public class GameManagerTimer : MonoBehaviour
     }
     public void PauseGame()
     {
-        pantallasfinales[0].SetActive(false);
-        pantallasfinales[2].SetActive(true);
+        if(Time.timeScale == 1)
+        {
+            Time.timeScale = 0;
+            pantallasfinales[0].SetActive(false);
+            pantallasfinales[2].SetActive(true);
+        }
     }
 
     public void ResumeGame()
     {
-        pantallasfinales[2].SetActive(false);
-        pantallasfinales[0].SetActive(true);
+        if(Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+            pantallasfinales[2].SetActive(false);
+            pantallasfinales[0].SetActive(true);
+        }
+    }
+    public void cambiarEscena(int indice)
+    {
+        SceneManager.LoadScene(indice);
     }
 }

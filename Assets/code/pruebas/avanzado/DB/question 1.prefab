@@ -44,13 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591d7555b71a8fc4a9ace263a9faff59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: asdawefde
+  Text: "Es un personaje de origen franc\xE9s s\xEDmbolo de la Revoluci\xF3n Francesa"
   Options:
-  - Text: dfesvc
-    IsCorrect: 0
-  - Text: efsacvv
-    IsCorrect: 0
-  - Text: sevsev
+  - Text: "Napole\xF3n Bonaparte"
     IsCorrect: 1
-  - Text: vesvsvf
+  - Text: Charles Darwin
+    IsCorrect: 0
+  - Text: "Sim\xF3n Bol\xEDvar"
+    IsCorrect: 0
+  - Text: Harry Truman
     IsCorrect: 0

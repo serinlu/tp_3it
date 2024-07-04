@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3538323380867187238}
   - component: {fileID: 4580451477687962346}
   m_Layer: 0
-  m_Name: question 3
+  m_Name: question 27
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,13 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591d7555b71a8fc4a9ace263a9faff59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: Planeta conocido por tener una mancha enorme en su superficie
+  Text: "En el cielo del polo norte ocurren fen\xF3menos luminosos conocidos como"
   Options:
-  - Text: "Plut\xF3n"
-    IsCorrect: 0
-  - Text: "J\xFApiter"
+  - Text: Auroras boreales
     IsCorrect: 1
-  - Text: Tierra
+  - Text: Auroras australes
     IsCorrect: 0
-  - Text: Ceres
+  - Text: Lluvia de estrellas
+    IsCorrect: 0
+  - Text: Cometas
     IsCorrect: 0

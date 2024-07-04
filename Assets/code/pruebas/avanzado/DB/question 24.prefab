@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3538323380867187238}
   - component: {fileID: 4580451477687962346}
   m_Layer: 0
-  m_Name: question 3
+  m_Name: question 24
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,13 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591d7555b71a8fc4a9ace263a9faff59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: Planeta conocido por tener una mancha enorme en su superficie
+  Text: "En qu\xE9 continente se ubica el pa\xEDs que tiene como idioma principal
+    el rumano?"
   Options:
-  - Text: "Plut\xF3n"
+  - Text: Asia
     IsCorrect: 0
-  - Text: "J\xFApiter"
+  - Text: Europa
     IsCorrect: 1
-  - Text: Tierra
+  - Text: "Am\xE9rica"
     IsCorrect: 0
-  - Text: Ceres
+  - Text: "Ocean\xEDa"
     IsCorrect: 0

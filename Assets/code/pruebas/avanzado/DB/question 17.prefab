@@ -44,13 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591d7555b71a8fc4a9ace263a9faff59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: asdawefde
+  Text: "Si mi celular se deval\xFAa cada a\xF1o el 10% de su precio original y este
+    me cost\xF3 1000, \xBFcu\xE1nto costar\xE1 a los 3 a\xF1os de haberlo comprado?"
   Options:
-  - Text: dfesvc
-    IsCorrect: 0
-  - Text: efsacvv
-    IsCorrect: 0
-  - Text: sevsev
+  - Text: 729
     IsCorrect: 1
-  - Text: vesvsvf
+  - Text: 680
+    IsCorrect: 0
+  - Text: 455
+    IsCorrect: 0
+  - Text: 920
     IsCorrect: 0

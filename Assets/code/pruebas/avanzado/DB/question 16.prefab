@@ -44,13 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591d7555b71a8fc4a9ace263a9faff59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: asdawefde
+  Text: "Cuanto demorar\xE1 un auto a 40 km/h pasar por un puente de 360 kil\xF3metros?"
   Options:
-  - Text: dfesvc
+  - Text: 8
     IsCorrect: 0
-  - Text: efsacvv
-    IsCorrect: 0
-  - Text: sevsev
+  - Text: 9
     IsCorrect: 1
-  - Text: vesvsvf
+  - Text: 10
+    IsCorrect: 0
+  - Text: 11
     IsCorrect: 0

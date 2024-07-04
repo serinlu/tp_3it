@@ -44,13 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591d7555b71a8fc4a9ace263a9faff59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: asdawefde
+  Text: "Si cambio 50 d\xF3lares a 3.50 el d\xF3lar, cu\xE1nto obtendr\xE9 en soles?"
   Options:
-  - Text: dfesvc
+  - Text: 150
     IsCorrect: 0
-  - Text: efsacvv
-    IsCorrect: 0
-  - Text: sevsev
+  - Text: 175
     IsCorrect: 1
-  - Text: vesvsvf
+  - Text: 220
+    IsCorrect: 0
+  - Text: 170
     IsCorrect: 0

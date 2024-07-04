@@ -44,13 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591d7555b71a8fc4a9ace263a9faff59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: asdawefde
+  Text: "A\xF1o del descubrimiento de Am\xE9rica"
   Options:
-  - Text: dfesvc
+  - Text: 1502
     IsCorrect: 0
-  - Text: efsacvv
+  - Text: 1652
     IsCorrect: 0
-  - Text: sevsev
+  - Text: 1492
     IsCorrect: 1
-  - Text: vesvsvf
+  - Text: 1453
     IsCorrect: 0

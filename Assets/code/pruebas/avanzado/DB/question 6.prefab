@@ -44,13 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591d7555b71a8fc4a9ace263a9faff59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: asdawefde
+  Text: '"ALIMENTAR" es...'
   Options:
-  - Text: dfesvc
+  - Text: un sustantivo
     IsCorrect: 0
-  - Text: efsacvv
-    IsCorrect: 0
-  - Text: sevsev
+  - Text: un verbo
     IsCorrect: 1
-  - Text: vesvsvf
+  - Text: un adjetivo
+    IsCorrect: 0
+  - Text: una frase
     IsCorrect: 0

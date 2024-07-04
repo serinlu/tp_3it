@@ -44,13 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591d7555b71a8fc4a9ace263a9faff59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: asdawefde
+  Text: "Es recordado por su hero\xEDsmo en la Guerra del Pac\xEDfico"
   Options:
-  - Text: dfesvc
+  - Text: "Sim\xF3n Bol\xEDvar"
     IsCorrect: 0
-  - Text: efsacvv
+  - Text: "Jos\xE9 de San Mart\xEDn"
     IsCorrect: 0
-  - Text: sevsev
+  - Text: "Ram\xF3n Castilla"
+    IsCorrect: 0
+  - Text: Miguel Grau
     IsCorrect: 1
-  - Text: vesvsvf
-    IsCorrect: 0

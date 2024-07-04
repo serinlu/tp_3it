@@ -21,6 +21,8 @@ public class GameManager_3 : MonoBehaviour
     public Text puntajeIncorrect;
     public GameObject pantallaFinal;
     public GameObject canvasPrincipal;
+    public GameObject canvasPausa;
+    public GameObject canvasPrevio;
     public Text mensajeFinal;
 
     public Text resultadoCorrecto;
@@ -48,11 +50,23 @@ public class GameManager_3 : MonoBehaviour
 
     private void Start()
     {
+        canvasPrevio.SetActive(true);
+        canvasPrincipal.SetActive(false);
+        canvasPausa.SetActive(false);
+        pantallaFinal.SetActive(false);
+        TimerIsRunning = false;
+    }
+    public void Inicio()
+    {
+        pantallaFinal.SetActive(false);
+        canvasPrevio.SetActive(false);
+        canvasPausa.SetActive(false);
+        canvasPrincipal.SetActive(true);
         restantes.text = restantesInt.ToString();
         m_quizDB = GameObject.FindFirstObjectByType<QuizDB_3>();
         m_quizUI = GameObject.FindFirstObjectByType<QuizUI_3>();
         m_audioSource = GetComponent<AudioSource>();
-        pantallaFinal.SetActive(false);
+        ;
         TimerIsRunning = true;
         foreach (Button boton in botones)
         {
@@ -172,17 +186,6 @@ public class GameManager_3 : MonoBehaviour
         }
     }
 
-    public void RepetirEjercicio()
-    {
-        correct = 0;
-        incorrect = 0;
-        puntajeCorrect.text = correct.ToString();
-        puntajeIncorrect.text = incorrect.ToString();
-        pantallaFinal.SetActive(false);
-        canvasPrincipal.SetActive(true);
-        Start();
-    }
-
     public void cambiarEscena(int indice)
     {
         SceneManager.LoadScene(indice);
@@ -194,6 +197,7 @@ public class GameManager_3 : MonoBehaviour
             Time.timeScale = 0;
             TimerIsRunning = false;
             canvasPrincipal.SetActive(false);
+            canvasPausa.SetActive(true);
         }
     }
 
@@ -203,6 +207,7 @@ public class GameManager_3 : MonoBehaviour
         {
             Time.timeScale = 1;
             TimerIsRunning = true;
+            canvasPausa.SetActive(false);
             canvasPrincipal.SetActive(true);
         }
     }

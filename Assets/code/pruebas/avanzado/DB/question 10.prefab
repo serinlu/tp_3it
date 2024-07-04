@@ -44,13 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591d7555b71a8fc4a9ace263a9faff59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: asdawefde
+  Text: Las leyes aprobadas por el congreso son promulgadas por
   Options:
-  - Text: dfesvc
+  - Text: El ministro del interior
     IsCorrect: 0
-  - Text: efsacvv
+  - Text: "El Contralor de la rep\xFAblica"
     IsCorrect: 0
-  - Text: sevsev
+  - Text: El Poder Ejecutivo
     IsCorrect: 1
-  - Text: vesvsvf
+  - Text: El Defensor del pueblo
     IsCorrect: 0

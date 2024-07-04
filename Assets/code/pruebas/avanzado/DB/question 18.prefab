@@ -44,13 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591d7555b71a8fc4a9ace263a9faff59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: asdawefde
+  Text: "Cuantos d\xEDas hay en 6 a\xF1os, sabiendo que hubieron 2 a\xF1os bisiestos
+    entre esos a\xF1os?"
   Options:
-  - Text: dfesvc
+  - Text: 2450
     IsCorrect: 0
-  - Text: efsacvv
+  - Text: 2300
     IsCorrect: 0
-  - Text: sevsev
+  - Text: 2110
+    IsCorrect: 0
+  - Text: 2192
     IsCorrect: 1
-  - Text: vesvsvf
-    IsCorrect: 0

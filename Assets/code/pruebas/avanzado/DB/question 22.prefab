@@ -44,13 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591d7555b71a8fc4a9ace263a9faff59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: asdawefde
+  Text: "Pa\xEDs que ocupa una isla al noroeste de Europa, cerca del polo norte"
   Options:
-  - Text: dfesvc
+  - Text: Noruega
     IsCorrect: 0
-  - Text: efsacvv
-    IsCorrect: 0
-  - Text: sevsev
+  - Text: Islandia
     IsCorrect: 1
-  - Text: vesvsvf
+  - Text: Reino Unido
+    IsCorrect: 0
+  - Text: "Espa\xF1a"
     IsCorrect: 0

@@ -44,13 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591d7555b71a8fc4a9ace263a9faff59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: asdawefde
+  Text: "Si tengo 4 peces, me compro el doble de lo que tengo pero luego se mueren
+    5, cu\xE1ntos me quedan vivos?"
   Options:
-  - Text: dfesvc
+  - Text: 3
     IsCorrect: 0
-  - Text: efsacvv
+  - Text: 6
     IsCorrect: 0
-  - Text: sevsev
+  - Text: 7
     IsCorrect: 1
-  - Text: vesvsvf
+  - Text: 2
     IsCorrect: 0

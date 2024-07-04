@@ -36,7 +36,7 @@ public class GameManager3 : MonoBehaviour
         pantallasfinales[0].SetActive(false); //pantalla de victoria
         pantallasfinales[1].SetActive(false); //pantalla de derrota
         pantallasfinales[2].SetActive(true); //pantalla de juego
-
+        pantallasfinales[3].SetActive(false); //pantalla de pausa
         correctastxt.text = m_correctAnswers.ToString();
         incorrectastxt.text = m_incorrectAnswers.ToString();
 
@@ -127,13 +127,13 @@ public class GameManager3 : MonoBehaviour
     }
     public void PauseGame()
     {
-        pantallasfinales[0].SetActive(false);
-        pantallasfinales[2].SetActive(true);
+        pantallasfinales[2].SetActive(false);
+        pantallasfinales[3].SetActive(true);
     }
 
     public void ResumeGame()
     {
-        pantallasfinales[2].SetActive(false);
-        pantallasfinales[0].SetActive(true);
+        pantallasfinales[3].SetActive(false);
+        pantallasfinales[2].SetActive(true);
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3538323380867187238}
   - component: {fileID: 4580451477687962346}
   m_Layer: 0
-  m_Name: question 3
+  m_Name: question 25
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,13 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591d7555b71a8fc4a9ace263a9faff59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: Planeta conocido por tener una mancha enorme en su superficie
+  Text: "Qu\xE9 oc\xE9ano ba\xF1a las costas de Nueva Zelanda?"
   Options:
-  - Text: "Plut\xF3n"
-    IsCorrect: 0
-  - Text: "J\xFApiter"
+  - Text: "Pac\xEDfico"
     IsCorrect: 1
-  - Text: Tierra
+  - Text: "Ant\xE1rtico"
     IsCorrect: 0
-  - Text: Ceres
+  - Text: "\xCDndico"
+    IsCorrect: 0
+  - Text: "Atl\xE1ntico"
     IsCorrect: 0
